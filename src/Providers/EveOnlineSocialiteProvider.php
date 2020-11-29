@@ -9,6 +9,7 @@ class EveOnlineSocialiteProvider extends AbstractProvider implements ProviderInt
 {
 
     protected $scopeSeparator = ' ';
+    protected $baseUrl = env('EVEONLINE_AUTH_BASE_URL', 'https://login.eveonline.com/')
 
     /**
      * Get the authentication URL for the provider.
@@ -19,7 +20,7 @@ class EveOnlineSocialiteProvider extends AbstractProvider implements ProviderInt
     protected function getAuthUrl($state)
     {
         return $this->buildAuthUrlFromBase(
-            'https://login.eveonline.com/oauth/authorize', $state
+            $this->baseUrl.'oauth/authorize', $state
         );
     }
 
@@ -30,7 +31,7 @@ class EveOnlineSocialiteProvider extends AbstractProvider implements ProviderInt
      */
     protected function getTokenUrl()
     {
-        return 'https://login.eveonline.com/oauth/token';
+        return $this->baseUrl.'oauth/token';
     }
 
     /**
@@ -42,7 +43,7 @@ class EveOnlineSocialiteProvider extends AbstractProvider implements ProviderInt
     protected function getUserByToken($token)
     {
         $response = $this->getHttpClient()->get(
-            'https://login.eveonline.com/oauth/verify', [
+             $this->baseUrl.'oauth/verify', [
             'headers' => [
                 'Authorization' => 'Bearer ' . $token
             ],
