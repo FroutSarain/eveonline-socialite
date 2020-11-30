@@ -9,7 +9,7 @@ class EveOnlineSocialiteProvider extends AbstractProvider implements ProviderInt
 {
 
     protected $scopeSeparator = ' ';
-    protected $baseUrl = env('EVEONLINE_AUTH_BASE_URL', 'https://login.eveonline.com/')
+    protected $baseUrl = env('EVEONLINE_AUTH_BASE_URL', 'https://login.eveonline.com/');
 
     /**
      * Get the authentication URL for the provider.
